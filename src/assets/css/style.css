@@ -30,6 +30,10 @@ body {
   & .rounded-circle {
     border-radius: 50%;
   }
+
+  & div.container {
+    height: 100%;
+  }
 }
 
 .wrapper {
