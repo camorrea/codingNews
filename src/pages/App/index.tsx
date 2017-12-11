@@ -41,24 +41,12 @@ const StyledApp = styled('div')`
   }
 `
 
-export default class Root extends React.Component<any, any> {
-  renderDevTool() {
-    if (process.env.NODE_ENV !== 'production') {
-      const DevTools = require('mobx-react-devtools').default
-      return <DevTools />
-    }
-  }
+const App: React.StatelessComponent<any> = props => (
+  <StyledApp>
+    <Header />
+    <div className="content">{props.children}</div>
+    <Footer />
+  </StyledApp>
+)
 
-  render() {
-    return (
-      <StyledApp>
-        <Header />
-        <div className="content">
-          {this.props.children}
-          {this.renderDevTool()}
-        </div>
-        <Footer />
-      </StyledApp>
-    )
-  }
-}
+export default App

@@ -56,7 +56,8 @@ const StyledDashboard = styled('div')`
     }
   }
 `
-export default class Dashboard extends React.Component<any, any> {
+
+export default class Dashboard extends React.PureComponent<any, any> {
   render() {
     return (
       <StyledDashboard>
