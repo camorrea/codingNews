@@ -8,6 +8,9 @@ import { Router, Route, Switch } from 'react-router'
 import App from './pages/App'
 import Dashboard from './pages/Dashboard'
 
+// Generic css
+import '../src/assets/css/style.css'
+
 // enable MobX strict mode
 useStrict(true)
 
