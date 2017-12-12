@@ -1,7 +1,16 @@
 import * as React from 'react'
 import styled from 'react-emotion'
+import { RouteComponentProps } from 'react-router'
+import { inject, observer } from 'mobx-react'
 
-const StyledDashboard = styled('div')`
+import Source from '../../components/Source'
+import { STORE_GRID } from '../../stores/Grid'
+
+interface StyledProps {
+  template: string
+}
+
+const StyledDashboard = styled<StyledProps, any>('div')`
   height: 100%;
 
   & .content-title {
@@ -17,15 +26,7 @@ const StyledDashboard = styled('div')`
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-gap: 15px;
-    grid-template-areas:
-      'source1 source1 source2 source2'
-      'source1 source1 source2 source2'
-      'source1 source1 source2 source2'
-      'source3 source3 source5 source5'
-      'source3 source3 source5 source5'
-      'source4 source4 source5 source5'
-      'source4 source4 source5 source5'
-      'source4 source4 source5 source5';
+    grid-template-areas: ${props => props.template};
 
     & .source {
       padding: 20px;
@@ -57,17 +58,24 @@ const StyledDashboard = styled('div')`
   }
 `
 
-export default class Dashboard extends React.PureComponent<any, any> {
+@inject(STORE_GRID)
+@observer
+export default class Dashboard extends React.Component<any, any> {
+  shouldComponentUpdate(nextProps) {
+    return true
+  }
   render() {
+    const { grid: { template, activeSources } } = this.props
+
     return (
-      <StyledDashboard>
+      <StyledDashboard template={`'${template.join("' '")}'`}>
         <h4 className="content-title">Dashboard</h4>
         <div className="grid">
-          <div className="source source1">Source 1</div>
-          <div className="source source2">Source 2</div>
-          <div className="source source3">Source 3</div>
-          <div className="source source4">Source 4</div>
-          <div className="source source5">Source 5</div>
+          {activeSources.map((source, index) => (
+            <Source key={index} targetGridArea={source.targetArea}>
+              <span>{React.createElement(source.component)}</span>
+            </Source>
+          ))}
         </div>
       </StyledDashboard>
     )

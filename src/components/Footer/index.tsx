@@ -8,6 +8,6 @@ const StyledFooter = styled('footer')`
   padding-top: 10px;
 `
 
-const Footer: React.StatelessComponent<any> = () => <StyledFooter>2017 CodingNews</StyledFooter>
+const Footer: React.SFC<any> = () => <StyledFooter>2017 CodingNews</StyledFooter>
 
 export default Footer

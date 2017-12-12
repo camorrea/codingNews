@@ -54,7 +54,7 @@ const StyledHeader = styled('header')`
   }
 `
 
-const Header: React.StatelessComponent<any> = () => (
+const Header: React.SFC<any> = () => (
   <StyledHeader>
     <div className="left-section">
       <a href="index.html" className="logo">
