@@ -3,16 +3,13 @@ import { observable, computed, action } from 'mobx'
 import EchoJS from '../components/Source/subs/EchoJS'
 import HumanCoders from '../components/Source/subs/HumanCoders'
 
-// Constants
-export const STORE_GRID: string = 'grid'
-
 // Models
 class SourceModel {
   @observable public targetArea: string
   @observable public component: React.ComponentClass<any> | React.SFC<any> | string
   @observable public active: boolean
 
-  constructor(targetArea: string, component: React.ComponentClass<any> | React.StatelessComponent<any> | string) {
+  constructor(targetArea: string, component: React.ComponentClass<any> | React.SFC<any> | string) {
     this.targetArea = targetArea
     this.component = component
     this.active = true
@@ -20,7 +17,7 @@ class SourceModel {
 }
 
 // Store
-export class GridStore {
+export default class GridStore {
   constructor() {
     this.sources = [
       new SourceModel('source1', EchoJS),
@@ -73,5 +70,3 @@ export class GridStore {
     ]
   }
 }
-
-export default GridStore

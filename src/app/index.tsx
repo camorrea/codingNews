@@ -10,13 +10,13 @@ import App from './pages/App'
 import Dashboard from './pages/Dashboard'
 
 // Generic css
-import '../src/assets/css/style.css'
+import '../assets/css/style.css'
 
 const history = createBrowserHistory()
 const rootStore = getRootStore(history)
 
 // Dev
-const renderDevTool = () => {
+const renderDevTool = (): any => {
   if (process.env.NODE_ENV !== 'production') {
     window['store'] = rootStore
 

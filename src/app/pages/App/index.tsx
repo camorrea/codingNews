@@ -41,7 +41,11 @@ const StyledApp = styled('div')`
   }
 `
 
-const App: React.StatelessComponent<any> = props => (
+interface AppProps {
+  children?: React.ReactNode
+}
+
+const App: React.SFC<AppProps> = props => (
   <StyledApp>
     <Header />
     <div className="content">{props.children}</div>

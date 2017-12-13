@@ -4,7 +4,8 @@ import { RouteComponentProps } from 'react-router'
 import { inject, observer } from 'mobx-react'
 
 import Source from '../../components/Source'
-import { STORE_GRID } from '../../stores/Grid'
+import GridStore from '../../stores/Grid'
+import RouterStore from '../../stores/Router'
 
 interface StyledProps {
   template: string
@@ -58,12 +59,15 @@ const StyledDashboard = styled<StyledProps, any>('div')`
   }
 `
 
-@inject(STORE_GRID)
+interface DashboardProps extends RouteComponentProps<any> {
+  routing: RouterStore
+  grid: GridStore
+}
+interface DashboardState {}
+
+@inject('grid')
 @observer
-export default class Dashboard extends React.Component<any, any> {
-  shouldComponentUpdate(nextProps) {
-    return true
-  }
+export default class Dashboard extends React.Component<DashboardProps, DashboardState> {
   render() {
     const { grid: { template, activeSources } } = this.props
 

@@ -7,7 +7,8 @@ const StyledFooter = styled('footer')`
   text-align: center;
   padding-top: 10px;
 `
+interface FooterProps {}
 
-const Footer: React.SFC<any> = () => <StyledFooter>2017 CodingNews</StyledFooter>
+const Footer: React.SFC<FooterProps> = () => <StyledFooter>2017 CodingNews</StyledFooter>
 
 export default Footer

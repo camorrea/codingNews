@@ -54,7 +54,9 @@ const StyledHeader = styled('header')`
   }
 `
 
-const Header: React.SFC<any> = () => (
+interface HeaderProps {}
+
+const Header: React.SFC<HeaderProps> = () => (
   <StyledHeader>
     <div className="left-section">
       <a href="index.html" className="logo">

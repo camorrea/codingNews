@@ -1,15 +1,15 @@
-var webpack = require('webpack')
-var path = require('path')
+const webpack = require('webpack')
+const path = require('path')
 
-// variables
-var isProduction = process.argv.indexOf('-p') >= 0
-var sourcePath = path.join(__dirname, './src')
-var assetsPath = path.join(__dirname, './src', 'assets')
-var outPath = path.join(__dirname, './dist')
+// constiables
+const isProduction = process.argv.indexOf('-p') >= 0
+const sourcePath = path.join(__dirname, './src/', 'app')
+const assetsPath = path.join(__dirname, './src', 'assets')
+const outPath = path.join(__dirname, './dist')
 
 // plugins
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   context: sourcePath,
@@ -47,12 +47,6 @@ module.exports = {
           use: [
             {
               loader: 'css-loader'
-              // query: {
-              //   modules: true,
-              //   sourceMap: !isProduction,
-              //   importLoaders: 1,
-              //   localIdentName: '[local]__[hash:base64:5]'
-              // }
             },
             {
               loader: 'postcss-loader',
@@ -94,7 +88,7 @@ module.exports = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
-      template: 'assets/index.html'
+      template: '../assets/index.html'
     })
   ],
   devServer: {
