@@ -1,30 +1,29 @@
 import { observable, computed, action } from 'mobx'
 
-import EchoJS from '../components/Source/subs/EchoJS'
-import HumanCoders from '../components/Source/subs/HumanCoders'
+import ProvidersStore, { ProviderStore } from './Providers'
 
 // Models
-class SourceModel {
+export class SourceModel {
   @observable public targetArea: string
-  @observable public component: React.ComponentClass<any> | React.SFC<any> | string
+  @observable public provider: ProviderStore
   @observable public active: boolean
 
-  constructor(targetArea: string, component: React.ComponentClass<any> | React.SFC<any> | string) {
+  constructor(targetArea: string, provider: ProviderStore) {
     this.targetArea = targetArea
-    this.component = component
+    this.provider = provider
     this.active = true
   }
 }
 
 // Store
 export default class GridStore {
-  constructor() {
+  constructor(providers: ProvidersStore) {
     this.sources = [
-      new SourceModel('source1', EchoJS),
-      new SourceModel('source2', HumanCoders),
-      new SourceModel('source3', EchoJS),
-      new SourceModel('source4', HumanCoders),
-      new SourceModel('source5', EchoJS)
+      new SourceModel('source1', providers.list[0]),
+      new SourceModel('source2', providers.list[1]),
+      new SourceModel('source3', providers.list[2]),
+      new SourceModel('source4', providers.list[3]),
+      new SourceModel('source5', providers.list[4])
     ]
     this.template = [
       'source1 source1 source2 source2',

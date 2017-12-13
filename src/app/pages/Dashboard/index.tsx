@@ -29,14 +29,6 @@ const StyledDashboard = styled<StyledProps, any>('div')`
     grid-gap: 15px;
     grid-template-areas: ${props => props.template};
 
-    & .source {
-      padding: 20px;
-      border-radius: 5px;
-      background-clip: padding-box;
-      background-color: #ffffff;
-      box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.06), 0 1px 0 0 rgba(0, 0, 0, 0.02);
-    }
-
     & .source1 {
       grid-area: source1;
     }
@@ -59,8 +51,7 @@ const StyledDashboard = styled<StyledProps, any>('div')`
   }
 `
 
-interface DashboardProps extends RouteComponentProps<any> {
-  routing: RouterStore
+interface DashboardProps {
   grid: GridStore
 }
 interface DashboardState {}
@@ -74,13 +65,7 @@ export default class Dashboard extends React.Component<DashboardProps, Dashboard
     return (
       <StyledDashboard template={`'${template.join("' '")}'`}>
         <h4 className="content-title">Dashboard</h4>
-        <div className="grid">
-          {activeSources.map((source, index) => (
-            <Source key={index} targetGridArea={source.targetArea}>
-              <span>{React.createElement(source.component)}</span>
-            </Source>
-          ))}
-        </div>
+        <div className="grid">{activeSources.map((source, index) => <Source key={index} source={source} />)}</div>
       </StyledDashboard>
     )
   }
